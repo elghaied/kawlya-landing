@@ -11,49 +11,40 @@ Any static server works:
 npx http-server . -p 4173
 ```
 
-## Design system
+## Design system (v4 — design client)
 
-| Token | Value | Use |
+| Token | Valeur | Usage |
 |---|---|---|
-| `--bg` | `#060a13` | page background (deep ink navy) |
-| `--bg-2` | `#0a101c` | alternate section background |
-| `--surface` | `#101828` | cards, panels |
-| `--cream` | `#e9f0f9` | primary text |
-| `--cream-dim` | `#8d9bb0` | secondary text |
-| `--accent` | `#62d9ff` | electric cyan — CTAs, highlights, em text |
-| `--accent-ink` | `#02131c` | text on cyan |
-| `--line` | `rgba(233,240,249,.13)` | borders/dividers |
+| `--noir` | `#0f0e0c` | fond sombre (héro, stats, démo, footer) |
+| `--creme` | `#f2efe9` | sections claires |
+| `--blanc` | `#ffffff` | cartes |
+| `--or` | `#c5a368` | accent or champagne (CTA, icônes, em) |
+| `--or-clair` / `--or-fonce` | `#dcc394` / `#a98850` | dégradés boutons |
+| `--encre` | `#191711` | texte sur clair |
 
-**Fonts (Google Fonts):**
-- Display: **Fraunces** (serif, 300–600 + italics) — headlines, big numbers, footer wordmark
-- Body: **Archivo** (400–600)
-- Labels/UI: **IBM Plex Mono** — eyebrows, buttons, nav (uppercase, letter-spaced)
+**Polices (Google Fonts) :** Plus Jakarta Sans (UI/titres) · Marcellus (monogramme + wordmark KAWLYA).
+**Libs (CDN) :** GSAP + ScrollTrigger, Lenis, Lucide. Pas de Three.js en v4 — vague de particules dorées en canvas 2D.
 
-**Libraries (CDN):** GSAP 3.12 + ScrollTrigger, Lenis 1.1 (smooth scroll), Three.js 0.160 (hero particle orb), Lucide (icons). Photos from Pexels (hotlinked, free license).
+## Sections (→ blocs Payload)
 
-## Section map (→ Payload blocks)
+1. **Héro** — H1, CTAs, coches, mockup téléphone (égaliseur animé, minuteur), 6 puces flottantes, canvas vague dorée
+2. **Logos** — bande crème « Déjà adopté par… »
+3. **Stats** — noir, 4 colonnes avec séparateurs (0 appel manqué, < 2 sec, + de RDV, + de temps)
+4. **Fonctionnalités** — crème, 6 cartes blanches
+5. **Démo** — carte noire arrondie, lecteur (play/pause + égaliseur + citation)
+6. **Tarifs** — 3 cartes (Performance mise en avant, badge « Le plus choisi »)
+7. **FAQ** — accordéons blancs sur 2 colonnes
+8. **Footer** — noir, marque + 3 colonnes + bloc CTA téléphone
 
-1. **Preloader** — K logo reveal + counter
-2. **Hero** — headline, sub, CTAs, Three.js voice orb, floating call card, mini stats
-3. **Logo marquee** — trusted-by strip (infinite scroll)
-4. **Live call demo** (`#demo`) — looping chat transcript + equalizer + 3 selling points
-5. **How it works** (`#how`) — sticky intro + 3 step cards
-6. **Features bento** (`#features`) — 6 cards (2 wide, 4 small), hover glow
-7. **Industries** (`#industries`) — pinned horizontal scroll (desktop) / swipe (mobile), 5 image cards
-8. **Stats** — 4 animated counters
-9. **Testimonials** — 3 rotating quotes with portraits
-10. **Pricing** (`#pricing`) — 3 tiers, middle featured
-11. **FAQ** (`#faq`) — accordion (native `<details>`)
-12. **Final CTA** (`#cta`) + **Footer** — giant outlined wordmark with parallax
+## Notes d'implémentation
 
-## Implementation notes
+- `body { overflow-x: clip }` — ne pas remplacer par `hidden` (créerait un second conteneur de scroll qui casse Lenis).
+- Reveals : après l'animation GSAP, les styles inline sont nettoyés (`clearProps`) et l'état final est posé via `.is-revealed` — sinon le transform résiduel casse les enfants `position: fixed` et l'opacité inline écrase le CSS.
+- `window.lenis` est exposé pour le debug.
 
-- `body { overflow-x: clip }` — do **not** change to `hidden`; `hidden` creates a second
-  scroll container that fights Lenis (black-screen bug).
-- The orb (`js/main.js` → `initOrb`) is a fibonacci-sphere of GPU points displaced by
-  simplex noise; `uAmp` follows a random "speech envelope" so it pulses like a voice.
-  Particle count and point size drop on mobile; it pauses off-screen and is skipped
-  entirely under `prefers-reduced-motion`.
-- Industries pin distance is clamped to ≥0 (ultra-wide screens fit all cards, no pin).
-- All scroll-reveal elements use `[data-reveal]`; hero intro uses `[data-hero-fade]`.
-- `window.lenis` is exposed for debugging/programmatic scrolls.
+## Versions (git)
+
+- `master` — v1 : noir chaud + lime, orbe particules
+- `v2-blue-redesign` — v2 : bleu nuit + cyan, héro plein écran + UnrealBloom
+- `v3-creative-sections` — v3 : sections typographiques (type-list, rangées éditoriales)
+- `v4-client-design` — v4 : design client (noir + or, FR) ← actuel
