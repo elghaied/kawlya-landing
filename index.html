@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 
@@ -53,7 +53,7 @@
     </nav>
     <div class="nav__actions">
       <a class="btn btn--ghost nav__login" href="#" data-cursor>Sign in</a>
-      <a class="btn btn--solid" href="#cta" data-cursor>Book a demo</a>
+      <a class="btn btn--solid" href="#cta" data-cursor><span class="btn__label" data-text="Book a demo">Book a demo</span></a>
       <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -70,7 +70,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn--solid menu__cta" href="#cta">Book a demo</a>
+    <a class="btn btn--solid menu__cta" href="#cta"><span class="btn__label" data-text="Book a demo">Book a demo</span></a>
   </div>
 
   <main id="top">
@@ -90,9 +90,9 @@
           books appointments, and answers questions in 30+ languages — day and night.
         </p>
         <div class="hero__cta" data-hero-fade>
-          <a class="btn btn--solid btn--lg" href="#cta" data-cursor>Book a demo</a>
+          <a class="btn btn--solid btn--lg" href="#cta" data-cursor><span class="btn__label" data-text="Book a demo">Book a demo</span></a>
           <a class="btn btn--outline btn--lg" href="#demo" data-cursor>
-            <span class="pulse-dot"></span> Hear it live
+            <span class="pulse-dot"></span> <span class="btn__label" data-text="Hear it live">Hear it live</span>
           </a>
         </div>
       </div>
@@ -170,26 +170,35 @@
 
     <!-- ░░ 4 · HOW IT WORKS ░░ -->
     <section class="how section" id="how">
-      <div class="how__sticky">
+      <div class="section__head">
         <p class="eyebrow mono" data-reveal>( 02 ) — How it works</p>
         <h2 class="h2" data-reveal>Live in an afternoon.<br /><em>Not a quarter.</em></h2>
         <p class="section__lede" data-reveal>No new hardware, no engineers. Keep your number — Kawlya sits in front of it.</p>
       </div>
-      <ol class="how__steps">
-        <li class="step" data-reveal>
-          <span class="step__no">01</span>
-          <h3>Connect your number</h3>
-          <p>Forward your existing line or pick a new local number. It takes about five minutes, and your callers notice nothing.</p>
+      <ol class="howlist">
+        <li class="howrow" data-reveal>
+          <span class="howrow__no" aria-hidden="true">1</span>
+          <div class="howrow__body">
+            <h3>Connect your number</h3>
+            <p>Forward your existing line or pick a new local number. Your callers notice nothing.</p>
+          </div>
+          <span class="howrow__meta mono">~ 5 min</span>
         </li>
-        <li class="step" data-reveal>
-          <span class="step__no">02</span>
-          <h3>Teach it your business</h3>
-          <p>Hours, services, prices, policies — paste them in or import your site. Kawlya speaks in your brand's tone from the first call.</p>
+        <li class="howrow" data-reveal>
+          <span class="howrow__no" aria-hidden="true">2</span>
+          <div class="howrow__body">
+            <h3>Teach it your business</h3>
+            <p>Hours, services, prices, policies — paste them in or import your site. It speaks your brand from call one.</p>
+          </div>
+          <span class="howrow__meta mono">~ 20 min</span>
         </li>
-        <li class="step" data-reveal>
-          <span class="step__no">03</span>
-          <h3>Watch it work</h3>
-          <p>Bookings land in your calendar, summaries in your inbox, and complex callers get warm-transferred to a human instantly.</p>
+        <li class="howrow" data-reveal>
+          <span class="howrow__no" aria-hidden="true">3</span>
+          <div class="howrow__body">
+            <h3>Watch it work</h3>
+            <p>Bookings in your calendar, summaries in your inbox, hard calls warm-transferred to a human.</p>
+          </div>
+          <span class="howrow__meta mono">forever</span>
         </li>
       </ol>
     </section>
@@ -200,38 +209,80 @@
         <p class="eyebrow mono" data-reveal>( 03 ) — Product</p>
         <h2 class="h2" data-reveal>A full front desk,<br /><em>in one phone line.</em></h2>
       </div>
-      <div class="bento">
-        <article class="bento__card bento__card--wide" data-reveal data-cursor>
-          <i data-lucide="phone-incoming"></i>
-          <h3>Answers 24/7, never on hold</h3>
-          <p>Nights, weekends, lunch rushes — every call is picked up within two rings, even when fifty arrive at once.</p>
-        </article>
-        <article class="bento__card" data-reveal data-cursor>
-          <i data-lucide="languages"></i>
-          <h3>30+ languages</h3>
-          <p>Detects the caller's language mid-sentence and switches seamlessly.</p>
-        </article>
-        <article class="bento__card" data-reveal data-cursor>
-          <i data-lucide="calendar-check"></i>
-          <h3>Books appointments</h3>
-          <p>Real-time sync with Google Calendar, Outlook, Calendly and your PMS.</p>
-        </article>
-        <article class="bento__card" data-reveal data-cursor>
-          <i data-lucide="split"></i>
-          <h3>Smart routing</h3>
-          <p>VIPs, emergencies and edge cases are warm-transferred to the right human.</p>
-        </article>
-        <article class="bento__card" data-reveal data-cursor>
-          <i data-lucide="plug-zap"></i>
-          <h3>Connects your stack</h3>
-          <p>CRM, helpdesk and 3,000+ tools via native integrations and webhooks.</p>
-        </article>
-        <article class="bento__card bento__card--wide" data-reveal data-cursor>
-          <i data-lucide="bar-chart-3"></i>
-          <h3>Every call, measured</h3>
-          <p>Transcripts, sentiment, conversion and missed-revenue recovered — in one dashboard you'll actually open.</p>
-        </article>
-      </div>
+      <ul class="featlist">
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">01</span>
+            <h3 class="featlist__title">Answers <em>24/7</em></h3>
+            <span class="featlist__tag mono">2-ring pickup</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="phone-incoming"></i>
+            <p>Nights, weekends, lunch rushes — fifty calls at once, every one picked up.</p>
+          </div>
+          <p class="featlist__mobile">Nights, weekends, lunch rushes — fifty calls at once, every one picked up.</p>
+        </li>
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">02</span>
+            <h3 class="featlist__title">Speaks <em>30+ languages</em></h3>
+            <span class="featlist__tag mono">mid-sentence switch</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="languages"></i>
+            <p>Detects the caller's language mid-sentence and answers in kind.</p>
+          </div>
+          <p class="featlist__mobile">Detects the caller's language mid-sentence and answers in kind.</p>
+        </li>
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">03</span>
+            <h3 class="featlist__title">Books <em>appointments</em></h3>
+            <span class="featlist__tag mono">live calendar sync</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="calendar-check"></i>
+            <p>Real-time sync with Google Calendar, Outlook, Calendly and your PMS.</p>
+          </div>
+          <p class="featlist__mobile">Real-time sync with Google Calendar, Outlook, Calendly and your PMS.</p>
+        </li>
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">04</span>
+            <h3 class="featlist__title">Routes the <em>hard calls</em></h3>
+            <span class="featlist__tag mono">warm transfer</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="split"></i>
+            <p>VIPs, emergencies and edge cases reach the right human with full context.</p>
+          </div>
+          <p class="featlist__mobile">VIPs, emergencies and edge cases reach the right human with full context.</p>
+        </li>
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">05</span>
+            <h3 class="featlist__title">Plugs into <em>your stack</em></h3>
+            <span class="featlist__tag mono">3,000+ tools</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="plug-zap"></i>
+            <p>CRM, helpdesk and calendars via native integrations and webhooks.</p>
+          </div>
+          <p class="featlist__mobile">CRM, helpdesk and calendars via native integrations and webhooks.</p>
+        </li>
+        <li class="featlist__item" data-reveal>
+          <div class="featlist__row" data-cursor>
+            <span class="featlist__no mono">06</span>
+            <h3 class="featlist__title">Measures <em>every call</em></h3>
+            <span class="featlist__tag mono">transcripts · sentiment</span>
+          </div>
+          <div class="featlist__preview" aria-hidden="true">
+            <i data-lucide="bar-chart-3"></i>
+            <p>Transcripts, conversion and recovered revenue in a dashboard you'll actually open.</p>
+          </div>
+          <p class="featlist__mobile">Transcripts, conversion and recovered revenue in a dashboard you'll actually open.</p>
+        </li>
+      </ul>
     </section>
 
     <!-- ░░ 6 · INDUSTRIES ░░ -->
@@ -269,20 +320,28 @@
       </div>
     </section>
 
-    <!-- ░░ 7 · STATS ░░ -->
-    <section class="stats section">
-      <ul class="stats__grid">
-        <li data-reveal><strong><span class="count" data-count="98">0</span>%</strong><span>of calls answered within two rings</span></li>
-        <li data-reveal><strong><span class="count" data-count="37">0</span>%</strong><span>more revenue from recovered missed calls</span></li>
-        <li data-reveal><strong><span class="count" data-count="30">0</span>+</strong><span>languages spoken fluently</span></li>
-        <li data-reveal><strong><span class="count" data-count="24">0</span>/7</strong><span>on the line, including holidays</span></li>
-      </ul>
+    <!-- ░░ 7 · STATS — full-bleed scrolling band ░░ -->
+    <section class="stats" aria-label="Kawlya by the numbers">
+      <div class="statband" id="statband">
+        <div class="statband__group">
+          <span class="statband__item"><strong>98%</strong><em>answered in two rings</em></span>
+          <i>✦</i>
+          <span class="statband__item"><strong>37%</strong><em>missed-call revenue recovered</em></span>
+          <i>✦</i>
+          <span class="statband__item"><strong>30+</strong><em>languages, fluently</em></span>
+          <i>✦</i>
+          <span class="statband__item"><strong>24/7</strong><em>including holidays</em></span>
+          <i>✦</i>
+        </div>
+      </div>
     </section>
 
     <!-- ░░ 8 · TESTIMONIALS ░░ -->
     <section class="quotes section">
       <p class="eyebrow mono" data-reveal>( 05 ) — Word of mouth</p>
+      <span class="quotes__glyph" aria-hidden="true">“</span>
       <div class="quotes__stage" data-reveal>
+        <span class="quotes__idx mono" id="quotesIdx">01 / 03</span>
         <figure class="quote is-active">
           <blockquote>“We stopped losing the 6 pm callers. Kawlya books them while we're still with patients — it paid for itself in nine days.”</blockquote>
           <figcaption>
@@ -318,45 +377,35 @@
         <p class="eyebrow mono" data-reveal>( 06 ) — Pricing</p>
         <h2 class="h2" data-reveal>Cheaper than a missed call<em>.</em></h2>
       </div>
-      <div class="pricing__grid">
-        <article class="plan" data-reveal data-cursor>
-          <h3 class="mono">Starter</h3>
-          <p class="plan__price"><strong>$49</strong>/mo</p>
-          <p class="plan__desc">For solo practices getting their evenings back.</p>
-          <ul>
-            <li>200 minutes / month</li>
-            <li>1 phone number</li>
-            <li>Bookings &amp; FAQs</li>
-            <li>Email summaries</li>
-          </ul>
-          <a class="btn btn--outline" href="#cta" data-cursor>Start free</a>
-        </article>
-        <article class="plan plan--featured" data-reveal data-cursor>
-          <span class="plan__badge mono">Most popular</span>
-          <h3 class="mono">Growth</h3>
-          <p class="plan__price"><strong>$149</strong>/mo</p>
-          <p class="plan__desc">For teams that can't afford a single missed lead.</p>
-          <ul>
-            <li>1,000 minutes / month</li>
-            <li>3 numbers · smart routing</li>
-            <li>Calendar &amp; CRM sync</li>
-            <li>30+ languages</li>
-            <li>Analytics dashboard</li>
-          </ul>
-          <a class="btn btn--solid" href="#cta" data-cursor>Book a demo</a>
-        </article>
-        <article class="plan" data-reveal data-cursor>
-          <h3 class="mono">Scale</h3>
-          <p class="plan__price"><strong>Custom</strong></p>
-          <p class="plan__desc">Multi-location, high volume, white glove.</p>
-          <ul>
-            <li>Unlimited minutes</li>
-            <li>Custom voices &amp; flows</li>
-            <li>SLA &amp; dedicated support</li>
-            <li>HIPAA-ready options</li>
-          </ul>
-          <a class="btn btn--outline" href="#cta" data-cursor>Talk to sales</a>
-        </article>
+      <div class="pricetable">
+        <a class="pricerow" href="#cta" data-reveal data-cursor>
+          <h3 class="pricerow__name">Starter</h3>
+          <div class="pricerow__info">
+            <p>Solo practices getting their evenings back.</p>
+            <span class="mono">200 min / mo · 1 number · bookings &amp; FAQs · email summaries</span>
+          </div>
+          <p class="pricerow__price"><strong>$49</strong><span class="mono">/mo</span></p>
+          <span class="pricerow__cta mono">Start free <i>↗</i></span>
+        </a>
+        <a class="pricerow pricerow--featured" href="#cta" data-reveal data-cursor>
+          <span class="pricerow__badge mono">Most popular</span>
+          <h3 class="pricerow__name"><em>Growth</em></h3>
+          <div class="pricerow__info">
+            <p>Teams that can't afford a single missed lead.</p>
+            <span class="mono">1,000 min / mo · 3 numbers · routing · CRM sync · 30+ languages · analytics</span>
+          </div>
+          <p class="pricerow__price"><strong>$149</strong><span class="mono">/mo</span></p>
+          <span class="pricerow__cta mono">Book a demo <i>↗</i></span>
+        </a>
+        <a class="pricerow" href="#cta" data-reveal data-cursor>
+          <h3 class="pricerow__name">Scale</h3>
+          <div class="pricerow__info">
+            <p>Multi-location, high volume, white glove.</p>
+            <span class="mono">unlimited minutes · custom voices · SLA · HIPAA-ready</span>
+          </div>
+          <p class="pricerow__price"><strong>Custom</strong></p>
+          <span class="pricerow__cta mono">Talk to sales <i>↗</i></span>
+        </a>
       </div>
     </section>
 
@@ -368,23 +417,23 @@
       </div>
       <div class="faq__list">
         <details class="faq__item" data-reveal>
-          <summary data-cursor>Will callers know it's an AI?<span class="faq__icon"></span></summary>
+          <summary data-cursor><span class="faq__no mono">01</span><span class="faq__q">Will callers know it's an AI?</span><span class="faq__icon"></span></summary>
           <p>Kawlya introduces itself honestly when asked, but its voice, pacing and conversational memory feel completely natural. Most callers simply notice they got helped fast.</p>
         </details>
         <details class="faq__item" data-reveal>
-          <summary data-cursor>Do I have to change my phone number?<span class="faq__icon"></span></summary>
+          <summary data-cursor><span class="faq__no mono">02</span><span class="faq__q">Do I have to change my phone number?</span><span class="faq__icon"></span></summary>
           <p>No. You keep your number and simply forward calls — always, after a few rings, or only outside business hours. You can switch it off anytime.</p>
         </details>
         <details class="faq__item" data-reveal>
-          <summary data-cursor>What happens with complicated calls?<span class="faq__icon"></span></summary>
+          <summary data-cursor><span class="faq__no mono">03</span><span class="faq__q">What happens with complicated calls?</span><span class="faq__icon"></span></summary>
           <p>Kawlya recognizes when a human is needed and warm-transfers the call with full context — or takes a detailed message and flags it as urgent.</p>
         </details>
         <details class="faq__item" data-reveal>
-          <summary data-cursor>How long does setup take?<span class="faq__icon"></span></summary>
+          <summary data-cursor><span class="faq__no mono">04</span><span class="faq__q">How long does setup take?</span><span class="faq__icon"></span></summary>
           <p>Most businesses are live within an afternoon. Connect a number, import your business info, make a test call — done.</p>
         </details>
         <details class="faq__item" data-reveal>
-          <summary data-cursor>Is my data secure?<span class="faq__icon"></span></summary>
+          <summary data-cursor><span class="faq__no mono">05</span><span class="faq__q">Is my data secure?</span><span class="faq__icon"></span></summary>
           <p>Calls are encrypted in transit and at rest, processed in certified data centers, and never used to train shared models. HIPAA-ready plans are available.</p>
         </details>
       </div>
@@ -396,8 +445,8 @@
       <h2 class="cta__title" data-reveal>Give your phone line<br /><em>a voice.</em></h2>
       <p class="section__lede" data-reveal>Fifteen minutes, your number, a live test call. That's all a demo takes.</p>
       <div class="cta__row" data-reveal>
-        <a class="btn btn--solid btn--lg" href="#" data-cursor>Book a demo</a>
-        <a class="btn btn--outline btn--lg" href="#" data-cursor>Call Kawlya now — +1 (555) 014-0123</a>
+        <a class="btn btn--solid btn--lg" href="#" data-cursor><span class="btn__label" data-text="Book a demo">Book a demo</span></a>
+        <a class="btn btn--outline btn--lg" href="#" data-cursor><span class="btn__label" data-text="Call Kawlya now — +1 (555) 014-0123">Call Kawlya now — +1 (555) 014-0123</span></a>
       </div>
     </section>
   </main>

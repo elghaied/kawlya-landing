@@ -384,6 +384,13 @@ document.querySelectorAll("[data-reveal]").forEach((el) => {
   gsap.to(el, {
     opacity: 1, y: 0, duration: 1, ease: "power3.out",
     scrollTrigger: { trigger: el, start: "top 88%" },
+    // clear inline styles afterwards: a leftover transform would turn the item
+    // into the containing block for fixed children (feature previews), and
+    // inline opacity would override hover-dim rules
+    onComplete() {
+      el.classList.add("is-revealed");
+      gsap.set(el, { clearProps: "opacity,transform" });
+    },
   });
 });
 
@@ -471,17 +478,12 @@ mm.add("(min-width: 641px)", () => {
 });
 
 /* ─────────────────────────────────
-   9 · STAT COUNTERS
+   9 · STAT BAND (infinite scrolling numbers)
 ───────────────────────────────── */
-gsap.utils.toArray(".count").forEach((el) => {
-  const target = +el.dataset.count;
-  gsap.fromTo(el, { textContent: 0 }, {
-    textContent: target,
-    duration: 1.6, ease: "power2.out",
-    snap: { textContent: 1 },
-    scrollTrigger: { trigger: el, start: "top 85%" },
-  });
-});
+const statband = document.getElementById("statband");
+const statGroup = statband.querySelector(".statband__group");
+for (let i = 0; i < 3; i++) statband.appendChild(statGroup.cloneNode(true));
+gsap.to(statband, { xPercent: -25, duration: 30, ease: "none", repeat: -1 });
 
 /* ─────────────────────────────────
    10 · TESTIMONIALS (auto-rotate + dots)
@@ -490,10 +492,12 @@ const quotes = gsap.utils.toArray(".quote");
 const dots = gsap.utils.toArray(".quotes__dot");
 let qIndex = 0, qTimer;
 
+const quotesIdx = document.getElementById("quotesIdx");
 function showQuote(i) {
   qIndex = i;
   quotes.forEach((q, n) => q.classList.toggle("is-active", n === i));
   dots.forEach((d, n) => d.classList.toggle("is-active", n === i));
+  quotesIdx.textContent = `${String(i + 1).padStart(2, "0")} / ${String(quotes.length).padStart(2, "0")}`;
 }
 function autoRotate() {
   qTimer = setInterval(() => showQuote((qIndex + 1) % quotes.length), 5200);
@@ -504,15 +508,48 @@ dots.forEach((d, i) => d.addEventListener("click", () => {
 autoRotate();
 
 /* ─────────────────────────────────
-   11 · BENTO HOVER GLOW + CURSOR
+   11 · FEATURE LIST — preview chases the cursor
 ───────────────────────────────── */
-document.querySelectorAll(".bento__card").forEach((card) => {
-  card.addEventListener("pointermove", (e) => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty("--mx", e.clientX - r.left + "px");
-    card.style.setProperty("--my", e.clientY - r.top + "px");
+if (window.matchMedia("(hover: hover)").matches) {
+  document.querySelectorAll(".featlist__item").forEach((item) => {
+    const row = item.querySelector(".featlist__row");
+    const preview = item.querySelector(".featlist__preview");
+    // quickTo = lerped follow, the card trails the pointer slightly
+    const px = gsap.quickTo(preview, "x", { duration: 0.45, ease: "power3" });
+    const py = gsap.quickTo(preview, "y", { duration: 0.45, ease: "power3" });
+    row.addEventListener("pointerenter", (e) => {
+      gsap.set(preview, { x: e.clientX + 28, y: e.clientY - 60 }); // snap to cursor before easing
+      item.classList.add("is-preview");
+    });
+    row.addEventListener("pointermove", (e) => {
+      px(Math.min(e.clientX + 28, innerWidth - 310));
+      py(e.clientY - 60);
+    });
+    row.addEventListener("pointerleave", () => item.classList.remove("is-preview"));
   });
+}
+
+/* ─────────────────────────────────
+   11b · BUTTON LABEL ROLL + MAGNETIC (desktop)
+───────────────────────────────── */
+// wrap each label's text so the roll animates inside the label mask
+document.querySelectorAll(".btn__label").forEach((label) => {
+  const text = label.dataset.text;
+  label.innerHTML = `<span class="btn__roll" data-text="${text}">${text}</span>`;
 });
+
+if (window.matchMedia("(hover: hover)").matches && !prefersReduced) {
+  document.querySelectorAll(".btn").forEach((btn) => {
+    const bx = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
+    const by = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      bx((e.clientX - (r.left + r.width / 2)) * 0.25);
+      by((e.clientY - (r.top + r.height / 2)) * 0.35);
+    });
+    btn.addEventListener("pointerleave", () => { bx(0); by(0); });
+  });
+}
 
 const cursor = document.getElementById("cursor");
 if (window.matchMedia("(hover: hover)").matches && !prefersReduced) {
