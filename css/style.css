@@ -88,7 +88,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 .brand__k { width: 26px; fill: var(--or); }
 .brand__mono em {
   font-family: var(--font-brand); font-style: normal;
-  font-size: 1.5rem; color: var(--ondark);
+  font-size: 1.5rem; color: var(--or); /* tout le monogramme en or, comme la maquette client */
   margin-left: -2px;
 }
 .brand__text strong {
@@ -243,7 +243,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 .phone__brand { margin-top: 12%; text-align: center; }
 .phone__mono { display: inline-flex; align-items: flex-end; }
 .phone__mono svg { width: 34px; fill: var(--or); }
-.phone__mono em { font-family: var(--font-brand); font-style: normal; font-size: 2rem; color: var(--ondark); margin-left: -3px; line-height: 1; }
+.phone__mono em { font-family: var(--font-brand); font-style: normal; font-size: 2rem; color: var(--or); margin-left: -3px; line-height: 1; }
 .phone__brand small { display: block; margin-top: 0.5rem; font-size: 0.55rem; letter-spacing: 0.3em; color: var(--ondark-dim); }
 .phone__eq { display: flex; align-items: center; gap: 3px; height: 44px; margin-top: auto; }
 .phone__eq i { width: 3px; height: 22%; border-radius: 2px; background: var(--or); transition: height 0.13s; }
