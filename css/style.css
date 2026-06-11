@@ -12,8 +12,9 @@
   --or: #c5a368;
   --or-clair: #dcc394;
   --or-fonce: #a98850;
+  --or-texte: #8a6c39;  /* or lisible sur fond clair — 4.8:1 sur blanc (l'--or ne passe pas WCAG en texte) */
   --encre: #191711;
-  --encre-dim: #6f6a5e;
+  --encre-dim: #5f5a50; /* 5.8:1 sur crème (l'ancien #6f6a5e était à 4.7, limite) */
   --ondark: #f3efe7;
   --ondark-dim: #a59e8f;
   --ligne-dark: rgba(243, 239, 231, 0.1);
@@ -52,35 +53,57 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 
 /* ─── boutons ─── */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
-  font-family: var(--font); font-weight: 600; font-size: 0.92rem;
-  padding: 0.85rem 1.5rem;
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+  font-family: var(--font); font-weight: 600; font-size: 0.95rem;
+  padding: 0.9rem 1.6rem;
   border-radius: 10px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s, filter 0.3s;
   white-space: nowrap;
 }
 .btn i { font-style: normal; transition: transform 0.3s; }
 .btn:hover i { transform: translateX(3px); }
 .btn svg.lucide { width: 17px; height: 17px; }
+.btn:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
+.btn:active { transform: translateY(0) scale(0.98); }
 
 .btn--gold {
-  background: linear-gradient(180deg, var(--or-clair), var(--or));
-  color: #221a0c;
-  box-shadow: 0 6px 18px rgba(197, 163, 104, 0.25);
+  background: linear-gradient(180deg, var(--or-clair), var(--or-fonce));
+  color: #1c1507; font-weight: 700;
+  box-shadow: 0 6px 18px rgba(197, 163, 104, 0.28), inset 0 1px 0 rgba(255, 248, 230, 0.45);
 }
-.btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(197, 163, 104, 0.35); }
+.btn--gold::after { /* reflet qui balaye au survol */
+  content: ""; position: absolute; top: 0; bottom: 0; left: -70%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 250, 235, 0.5), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+.btn--gold:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 12px 28px rgba(197, 163, 104, 0.4), inset 0 1px 0 rgba(255, 248, 230, 0.45); }
+.btn--gold:hover::after { left: 125%; }
 
 .btn--ghost {
-  border-color: rgba(243, 239, 231, 0.25);
+  border-color: rgba(243, 239, 231, 0.38);
   color: var(--ondark);
-  background: rgba(243, 239, 231, 0.03);
+  background: rgba(243, 239, 231, 0.06);
 }
-.btn--ghost:hover { border-color: var(--or); color: var(--or-clair); }
+.btn--ghost:hover { border-color: var(--or); color: var(--or-clair); background: rgba(197, 163, 104, 0.1); transform: translateY(-2px); }
 
-.btn--gold-outline { border-color: var(--or); color: var(--or-fonce); background: transparent; }
-.btn--gold-outline:hover { background: var(--or); color: #221a0c; }
+.btn--gold-outline {
+  border: 1.5px solid var(--or-fonce);
+  color: var(--or-texte); font-weight: 700;
+  background: transparent;
+}
+.btn--gold-outline:hover {
+  background: linear-gradient(180deg, var(--or-clair), var(--or));
+  border-color: transparent;
+  color: #1c1507;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(197, 163, 104, 0.3);
+}
 
 /* ─── marque ─── */
 .brand { display: flex; align-items: center; gap: 0.75rem; }
@@ -123,11 +146,21 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 }
 .nav__links { display: flex; gap: clamp(1.2rem, 2.5vw, 2.2rem); }
 .nav__links a {
+  position: relative;
   font-size: 0.88rem; font-weight: 500;
   color: var(--ondark-dim);
   transition: color 0.3s;
 }
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: -5px;
+  width: 100%; height: 1.5px;
+  background: var(--or);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
 .nav__links a:hover { color: var(--or-clair); }
+.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav__links a:focus-visible { outline: 2px solid var(--or); outline-offset: 4px; border-radius: 2px; }
 .nav__actions { display: flex; align-items: center; gap: 0.6rem; }
 .nav__burger {
   display: none; flex-direction: column; gap: 6px;
@@ -163,16 +196,17 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
   color: var(--encre);
   line-height: 1.2;
 }
-.h2 em { font-style: normal; color: var(--or); }
+.h2 em { font-style: normal; color: var(--or-texte); } /* sur crème : l'--or pur tombe à ~2:1 */
 .h2--ondark { color: var(--ondark); }
+.h2--ondark em { color: var(--or); } /* sur noir : 8:1, l'or pur peut briller */
 .h2--center { text-align: center; }
 
 .chip-label {
   display: inline-block;
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--or-fonce);
-  border: 1px solid rgba(197, 163, 104, 0.5);
+  color: var(--or-texte);
+  border: 1px solid rgba(169, 136, 80, 0.55);
   border-radius: 6px;
   padding: 0.3rem 0.65rem;
   margin-bottom: 1.1rem;
@@ -277,7 +311,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-  font-size: 0.68rem; line-height: 1.45;
+  font-size: 0.72rem; line-height: 1.45;
   color: var(--ondark-dim);
   animation: chipfloat 6s ease-in-out infinite;
 }
@@ -310,7 +344,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 .logos__row li {
   font-family: var(--font-brand);
   font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(25, 23, 17, 0.55);
+  color: rgba(25, 23, 17, 0.72);
 }
 
 /* ─── stats ─── */
@@ -362,7 +396,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
 }
 .fcard > svg { width: 26px; height: 26px; stroke-width: 1.5; color: var(--encre); margin: 0 auto 1rem; }
 .fcard h3 { font-size: 0.92rem; font-weight: 700; color: var(--encre); margin-bottom: 0.5rem; }
-.fcard p { font-size: 0.76rem; color: var(--encre-dim); line-height: 1.55; }
+.fcard p { font-size: 0.8rem; color: var(--encre-dim); line-height: 1.55; }
 
 /* ─── démo ─── */
 .demo-wrap { background: var(--creme); padding: 0 var(--pad) clamp(4rem, 8vh, 6rem); }
@@ -443,7 +477,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
   position: relative; padding-left: 1.5rem;
   font-size: 0.88rem; color: var(--encre);
 }
-.plan ul li::before { content: "✓"; position: absolute; left: 0; color: var(--or-fonce); font-weight: 700; }
+.plan ul li::before { content: "✓"; position: absolute; left: 0; color: var(--or-texte); font-weight: 700; }
 .plan .btn { width: 100%; }
 
 /* ─── faq ─── */
@@ -481,7 +515,7 @@ svg.lucide { width: 22px; height: 22px; stroke-width: 1.8; }
   margin-top: -4px;
 }
 .faq__item[open] summary i { transform: rotate(-135deg); margin-top: 4px; }
-.faq__item p { padding: 0 0 1.2rem; font-size: 0.86rem; color: var(--encre-dim); }
+.faq__item p { padding: 0 0 1.2rem; font-size: 0.9rem; color: var(--encre-dim); }
 
 /* ─── footer ─── */
 .footer { background: var(--noir); padding: clamp(3.5rem, 7vh, 5.5rem) var(--pad) 1.6rem; }
