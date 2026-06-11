@@ -21,7 +21,7 @@ npx http-server . -p 4173
 | `--cream` | `#e9f0f9` | primary text |
 | `--cream-dim` | `#8d9bb0` | secondary text |
 | `--accent` | `#62d9ff` | electric cyan — CTAs, highlights, em text |
-| `--accent-ink` | `#02131c` | text on lime |
+| `--accent-ink` | `#02131c` | text on cyan |
 | `--line` | `rgba(233,240,249,.13)` | borders/dividers |
 
 **Fonts (Google Fonts):**
