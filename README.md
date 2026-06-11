@@ -15,14 +15,14 @@ npx http-server . -p 4173
 
 | Token | Value | Use |
 |---|---|---|
-| `--bg` | `#0d0b08` | page background (warm near-black) |
-| `--bg-2` | `#131009` | alternate section background |
-| `--surface` | `#1a1610` | cards, panels |
-| `--cream` | `#efe6d4` | primary text |
-| `--cream-dim` | `#a39a87` | secondary text |
-| `--accent` | `#d4fa52` | phosphor lime — CTAs, highlights, em text |
-| `--accent-ink` | `#131400` | text on lime |
-| `--line` | `rgba(239,230,212,.13)` | borders/dividers |
+| `--bg` | `#060a13` | page background (deep ink navy) |
+| `--bg-2` | `#0a101c` | alternate section background |
+| `--surface` | `#101828` | cards, panels |
+| `--cream` | `#e9f0f9` | primary text |
+| `--cream-dim` | `#8d9bb0` | secondary text |
+| `--accent` | `#62d9ff` | electric cyan — CTAs, highlights, em text |
+| `--accent-ink` | `#02131c` | text on lime |
+| `--line` | `rgba(233,240,249,.13)` | borders/dividers |
 
 **Fonts (Google Fonts):**
 - Display: **Fraunces** (serif, 300–600 + italics) — headlines, big numbers, footer wordmark
