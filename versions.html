@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawlya — Versions du design</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100svh;
+      background: #0f0e0c; color: #f3efe7;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem; padding: 2rem;
+    }
+    h1 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; }
+    h1 em { font-style: normal; color: #c5a368; }
+    ul { list-style: none; display: grid; gap: 0.9rem; width: min(520px, 100%); }
+    a {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      background: #171511; border: 1px solid rgba(243,239,231,0.1);
+      border-radius: 12px; padding: 1.1rem 1.4rem;
+      color: inherit; text-decoration: none;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    a:hover { border-color: #c5a368; transform: translateY(-2px); }
+    a strong { font-size: 0.98rem; }
+    a span { font-size: 0.78rem; color: #a59e8f; }
+    a i { font-style: normal; color: #c5a368; }
+    .tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+           color: #221a0c; background: linear-gradient(180deg, #dcc394, #c5a368);
+           border-radius: 5px; padding: 0.25rem 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Kawlya — <em>versions du design</em></h1>
+  <ul>
+    <li><a href="./"><div><strong>V4 — Design client</strong><br /><span>Noir &amp; or champagne · FR · mockup téléphone</span></div><span class="tag">Actuel</span></a></li>
+    <li><a href="v3/"><div><strong>V3 — Sections typographiques</strong><br /><span>Bleu nuit · type-list, rangées éditoriales</span></div><i>→</i></a></li>
+    <li><a href="v2/"><div><strong>V2 — Héro lumineux</strong><br /><span>Bleu nuit &amp; cyan · orbe 3D plein écran</span></div><i>→</i></a></li>
+    <li><a href="v1/"><div><strong>V1 — Première direction</strong><br /><span>Noir chaud &amp; lime · éditorial sombre</span></div><i>→</i></a></li>
+  </ul>
+</body>
+</html>

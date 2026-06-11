@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawlya — The AI receptionist that answers every call</title>
+  <meta name="description" content="Kawlya is an AI voice agent for your business phone line. It answers every call, books appointments, and speaks 30+ languages — 24/7." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+
+  <!-- ░░ PRELOADER ░░ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__mark">
+      <svg class="k-mark" viewBox="0 0 357.513 465.269" aria-hidden="true">
+        <path d="M5.428.289C16.507-.244,30.851.12,42.141.134l60.305.073.003.763c.002.742.041,3.913-.295,4.115-2.287,1.374-7.777,1.446-10.459,2.167-8.54,2.295-14.386,7.812-14.963,16.88-1.169,18.344-.506,36.918-.438,55.305l-.048,59.476c-.014,9.421-.184,18.442-.01,27.898,3.246-2.34,7.165-6.284,10.334-8.975,10.255-8.704,19.672-18.316,29.516-27.388,14.125-13.018,28.25-25.966,41.987-39.408,4.179-4.323,8.574-7.22,11.835-12.294,8.109-12.616-14.472-8.969-9.495-15.547,2.093-.321,7.844-.164,10.18-.159l16.862-.058,36.912.055c2.795.024,10.001-.647,11.948.59,2.716,4.064-3.479,4.301-5.903,4.617-16.113,2.097-26.898,15.233-38.277,25.886l-30.717,28.627c-3.781,3.514-7.649,6.808-11.322,10.46-5.622,5.591-12.354,10.715-17.659,16.575l-.256.286c2.14,3.927,10.28,13.73,13.365,17.622l21.945,27.988,59.586,76.373c8.74,11.269,17.38,21.964,26.044,33.467.773-.897,1.494-1.839,2.158-2.819,7.722-11.449,15.437-23.753,22.993-35.433,6.758-10.447,15.597-22.196,20.368-33.597.926-2.212.822-7.309.334-9.578-1.335-6.716-7.429-9.245-13.491-10.367-2.324-.43-5.859-1.109-6.249-3.826.131-.352.346-1.132.615-1.249,3.143-1.369,12.767-.787,15.592-.77,7.455.085,14.91.099,22.365.041l24.774-.028c4.306-.004,10.838-.188,14.933.163-.003.906.041,3.71-.448,4.164-1.27,1.179-6.995,1.914-8.666,2.238-6.087,1.181-10.197,4.561-14.699,8.52-1.468,1.29-2.696,3.119-3.937,4.629-5.971,7.819-11.199,16.269-16.969,24.233-5.358,7.396-10.686,14.702-15.578,22.422-1.182,1.866-2.63,3.444-3.8,5.341-8.233,13.233-18.282,26.38-26.852,39.48-2.817,4.305-6.598,8.961-8.966,13.517-.314.604-.425,3.317-.426,4.123-.019,21.216.023,42.461.015,63.674l-.014,24.227c-.002,11.902-1.172,28.842,12.956,33.756,2.311.804,5.7.961,7.61,2.567,1.54,2.752-.015,4.166-2.879,4.161-13.542-.02-27.089-.082-40.634-.071l-26.802.103c-3.652.02-15.121.476-18.03-.537-.41-.577-.537-1.279-.544-1.996-.014-4.692,6.043-2.881,8.952-4.125,13.251-5.667,11.412-24.365,11.435-36.035l-.022-29.561c.111-15.569.137-31.139.077-46.708-.011-3.583.569-21.886-.997-23.915-4.005-5.189-9.398-11.839-13.551-17.134l-29.963-37.504c-4.219-5.199-8.6-10.315-12.762-15.55l-43.158-53.64-9.379-11.617c-2.716-3.411-5.425-7.107-8.642-10.021-.693.749-1.602,1.505-2.395,2.153-4.205,3.434-8.032,7.1-11.906,10.894-.096.634-.182,1.293-.207,1.934-.419,10.724-.176,21.258-.129,31.937l-.053,31.931c.026,6.808-.055,14.009-.109,20.795-.164,20.762.676,35.962,25.583,36.91.075,2.13.05,3.305-.14,5.426-5.159.515-14.383.242-19.85.226l-35.272-.09-26.897.058c-5.675.019-11.911.36-17.511-.581-1.261-.211-1.584-2.548-1.138-3.514.574-1.243,3.091-1.45,4.298-1.699,14.268-1.698,20.099-10.888,20.604-24.531.339-9.144.25-18.022.196-27.118l-.041-29.901-.057-88.945-.071-77.33c-.01-12.213.361-24.48-.068-36.703-.11-3.131-.789-7.796-2.036-10.712-3.031-7.086-7.563-10.237-15.134-11.343-2.582-.401-4.997-.407-7.461-1.373C-.443,4.647-.075,2.151.519,1.147,1.022.299,4.228.418,5.428.289Z"/>
+      </svg>
+    </div>
+    <div class="preloader__count" id="preloaderCount">00</div>
+  </div>
+
+  <!-- ░░ GRAIN ░░ -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ░░ CURSOR ░░ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <!-- ░░ NAV ░░ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" data-cursor>
+      <svg class="nav__k" viewBox="0 0 357.513 465.269" aria-hidden="true"><use href="#kpath"/></svg>
+      <span class="nav__word">kawlya</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#demo" data-cursor>Live demo</a>
+      <a href="#how" data-cursor>How it works</a>
+      <a href="#features" data-cursor>Product</a>
+      <a href="#industries" data-cursor>Industries</a>
+      <a href="#pricing" data-cursor>Pricing</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--ghost nav__login" href="#" data-cursor>Sign in</a>
+      <a class="btn btn--solid" href="#cta" data-cursor>Book a demo</a>
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ░░ MOBILE MENU ░░ -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__links">
+      <a href="#demo">Live demo</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Product</a>
+      <a href="#industries">Industries</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--solid menu__cta" href="#cta">Book a demo</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ░░ 1 · HERO ░░ -->
+    <section class="hero">
+      <canvas class="hero__orb" id="orb" aria-hidden="true"></canvas>
+
+      <div class="hero__inner">
+        <p class="hero__eyebrow mono" data-hero-fade>AI voice agents for business phone lines</p>
+        <h1 class="hero__title">
+          <span class="line"><span class="line__in">Every call,</span></span>
+          <span class="line"><span class="line__in"><em>answered</em><span class="accent-dot">.</span></span></span>
+        </h1>
+        <p class="hero__sub" data-hero-fade>
+          Kawlya is the AI receptionist on your phone line. It greets every caller,
+          books appointments, and answers questions in 30+ languages — day and night.
+        </p>
+        <div class="hero__cta" data-hero-fade>
+          <a class="btn btn--solid btn--lg" href="#cta" data-cursor>Book a demo</a>
+          <a class="btn btn--outline btn--lg" href="#demo" data-cursor>
+            <span class="pulse-dot"></span> Hear it live
+          </a>
+        </div>
+      </div>
+
+      <!-- floating call card -->
+      <aside class="callcard" id="callcard" data-hero-fade aria-hidden="true">
+        <div class="callcard__head">
+          <div class="callcard__avatar mono">SM</div>
+          <div>
+            <p class="callcard__name">Sarah Mitchell</p>
+            <p class="callcard__meta mono">Incoming · 00:42</p>
+          </div>
+          <div class="callcard__wave"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <p class="callcard__line">“…I'd like to move my appointment to Friday.”</p>
+        <div class="callcard__chip mono">✓ Rebooked — Fri 3:30 PM</div>
+      </aside>
+
+      <div class="hero__foot">
+        <p class="mono" data-hero-fade>Scroll <span class="hero__arrow">↓</span></p>
+        <ul class="hero__stats" data-hero-fade>
+          <li><strong>2 rings</strong><span>avg. pickup</span></li>
+          <li><strong>30+</strong><span>languages</span></li>
+          <li><strong>24/7</strong><span>always on</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ░░ 2 · MARQUEE ░░ -->
+    <section class="marquee" aria-label="Trusted by">
+      <div class="marquee__track" id="marqueeTrack">
+        <div class="marquee__group">
+          <span>Nordhaus Clinic</span><i>◆</i><span>Casa Mare</span><i>◆</i>
+          <span>Velt &amp; Partners</span><i>◆</i><span>Orla Spa</span><i>◆</i>
+          <span>Prime Estates</span><i>◆</i><span>Bloom Salon</span><i>◆</i>
+          <span>Luma Dental</span><i>◆</i><span>Atelier Nord</span><i>◆</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ 3 · LIVE CALL DEMO ░░ -->
+    <section class="demo section" id="demo">
+      <div class="section__head">
+        <p class="eyebrow mono" data-reveal>( 01 ) — Live demo</p>
+        <h2 class="h2" data-reveal>Listen to Kawlya<br /><em>take a booking.</em></h2>
+        <p class="section__lede" data-reveal>
+          A real conversation, handled end-to-end. No hold music, no “press 1” —
+          just a natural voice that gets things done.
+        </p>
+      </div>
+
+      <div class="demo__stage" data-reveal>
+        <div class="demo__phone">
+          <div class="demo__statusbar mono"><span>Kawlya · Nordhaus Clinic</span><span class="demo__timer" id="demoTimer">00:00</span></div>
+          <div class="demo__chat" id="demoChat">
+            <div class="bubble bubble--caller"><span class="bubble__who mono">Caller</span>Hi, do you have anything available this Friday?</div>
+            <div class="bubble bubble--ai"><span class="bubble__who mono">Kawlya</span>Absolutely — Dr. Hanson has 11:00 AM or 3:30 PM open on Friday. Which works best for you?</div>
+            <div class="bubble bubble--caller"><span class="bubble__who mono">Caller</span>3:30 works great.</div>
+            <div class="bubble bubble--ai"><span class="bubble__who mono">Kawlya</span>Done! You're booked for Friday at 3:30 PM. I've texted you a confirmation. Anything else?</div>
+            <div class="bubble bubble--system mono">✓ Appointment created · Calendar synced · SMS sent</div>
+          </div>
+          <div class="demo__voicebar">
+            <div class="demo__eq" id="demoEq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="mono" id="demoSpeaker">Kawlya is speaking…</span>
+          </div>
+        </div>
+
+        <ul class="demo__points">
+          <li data-reveal><span class="mono">01</span><div><h3>Sounds human</h3><p>Natural pacing, interruptions handled, zero robotic stiffness.</p></div></li>
+          <li data-reveal><span class="mono">02</span><div><h3>Acts instantly</h3><p>Bookings, reschedules and FAQs resolved during the call — not after.</p></div></li>
+          <li data-reveal><span class="mono">03</span><div><h3>Reports back</h3><p>Every call arrives in your inbox as a summary, transcript and recording.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ░░ 4 · HOW IT WORKS ░░ -->
+    <section class="how section" id="how">
+      <div class="how__sticky">
+        <p class="eyebrow mono" data-reveal>( 02 ) — How it works</p>
+        <h2 class="h2" data-reveal>Live in an afternoon.<br /><em>Not a quarter.</em></h2>
+        <p class="section__lede" data-reveal>No new hardware, no engineers. Keep your number — Kawlya sits in front of it.</p>
+      </div>
+      <ol class="how__steps">
+        <li class="step" data-reveal>
+          <span class="step__no">01</span>
+          <h3>Connect your number</h3>
+          <p>Forward your existing line or pick a new local number. It takes about five minutes, and your callers notice nothing.</p>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__no">02</span>
+          <h3>Teach it your business</h3>
+          <p>Hours, services, prices, policies — paste them in or import your site. Kawlya speaks in your brand's tone from the first call.</p>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__no">03</span>
+          <h3>Watch it work</h3>
+          <p>Bookings land in your calendar, summaries in your inbox, and complex callers get warm-transferred to a human instantly.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ░░ 5 · FEATURES BENTO ░░ -->
+    <section class="features section" id="features">
+      <div class="section__head">
+        <p class="eyebrow mono" data-reveal>( 03 ) — Product</p>
+        <h2 class="h2" data-reveal>A full front desk,<br /><em>in one phone line.</em></h2>
+      </div>
+      <div class="bento">
+        <article class="bento__card bento__card--wide" data-reveal data-cursor>
+          <i data-lucide="phone-incoming"></i>
+          <h3>Answers 24/7, never on hold</h3>
+          <p>Nights, weekends, lunch rushes — every call is picked up within two rings, even when fifty arrive at once.</p>
+        </article>
+        <article class="bento__card" data-reveal data-cursor>
+          <i data-lucide="languages"></i>
+          <h3>30+ languages</h3>
+          <p>Detects the caller's language mid-sentence and switches seamlessly.</p>
+        </article>
+        <article class="bento__card" data-reveal data-cursor>
+          <i data-lucide="calendar-check"></i>
+          <h3>Books appointments</h3>
+          <p>Real-time sync with Google Calendar, Outlook, Calendly and your PMS.</p>
+        </article>
+        <article class="bento__card" data-reveal data-cursor>
+          <i data-lucide="split"></i>
+          <h3>Smart routing</h3>
+          <p>VIPs, emergencies and edge cases are warm-transferred to the right human.</p>
+        </article>
+        <article class="bento__card" data-reveal data-cursor>
+          <i data-lucide="plug-zap"></i>
+          <h3>Connects your stack</h3>
+          <p>CRM, helpdesk and 3,000+ tools via native integrations and webhooks.</p>
+        </article>
+        <article class="bento__card bento__card--wide" data-reveal data-cursor>
+          <i data-lucide="bar-chart-3"></i>
+          <h3>Every call, measured</h3>
+          <p>Transcripts, sentiment, conversion and missed-revenue recovered — in one dashboard you'll actually open.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ 6 · INDUSTRIES ░░ -->
+    <section class="industries section" id="industries">
+      <div class="section__head section__head--row">
+        <div>
+          <p class="eyebrow mono" data-reveal>( 04 ) — Industries</p>
+          <h2 class="h2" data-reveal>Built for businesses<br /><em>that live on the phone.</em></h2>
+        </div>
+        <p class="mono industries__hint" data-reveal>Drag / scroll →</p>
+      </div>
+      <div class="industries__viewport" id="indViewport">
+        <div class="industries__track" id="indTrack">
+          <article class="indcard" data-cursor>
+            <img src="https://images.pexels.com/photos/3779705/pexels-photo-3779705.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dentist treating a patient" loading="lazy" />
+            <div class="indcard__body"><span class="mono">Clinics &amp; dental</span><h3>Fewer no-shows, fuller chairs</h3></div>
+          </article>
+          <article class="indcard" data-cursor>
+            <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Waiter carrying plated dishes" loading="lazy" />
+            <div class="indcard__body"><span class="mono">Restaurants</span><h3>Reservations during the rush</h3></div>
+          </article>
+          <article class="indcard" data-cursor>
+            <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=900" alt="House exterior at dusk" loading="lazy" />
+            <div class="indcard__body"><span class="mono">Real estate</span><h3>Every lead answered first</h3></div>
+          </article>
+          <article class="indcard" data-cursor>
+            <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Client at a hair salon" loading="lazy" />
+            <div class="indcard__body"><span class="mono">Salons &amp; spas</span><h3>Booked while you work</h3></div>
+          </article>
+          <article class="indcard" data-cursor>
+            <img src="https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Wooden gavel on a desk" loading="lazy" />
+            <div class="indcard__body"><span class="mono">Law firms</span><h3>Intake that never sleeps</h3></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ 7 · STATS ░░ -->
+    <section class="stats section">
+      <ul class="stats__grid">
+        <li data-reveal><strong><span class="count" data-count="98">0</span>%</strong><span>of calls answered within two rings</span></li>
+        <li data-reveal><strong><span class="count" data-count="37">0</span>%</strong><span>more revenue from recovered missed calls</span></li>
+        <li data-reveal><strong><span class="count" data-count="30">0</span>+</strong><span>languages spoken fluently</span></li>
+        <li data-reveal><strong><span class="count" data-count="24">0</span>/7</strong><span>on the line, including holidays</span></li>
+      </ul>
+    </section>
+
+    <!-- ░░ 8 · TESTIMONIALS ░░ -->
+    <section class="quotes section">
+      <p class="eyebrow mono" data-reveal>( 05 ) — Word of mouth</p>
+      <div class="quotes__stage" data-reveal>
+        <figure class="quote is-active">
+          <blockquote>“We stopped losing the 6 pm callers. Kawlya books them while we're still with patients — it paid for itself in nine days.”</blockquote>
+          <figcaption>
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=160" alt="" loading="lazy" />
+            <div><strong>Maya Lindqvist</strong><span class="mono">Owner, Bloom Salon</span></div>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Our front desk used to drown at lunch. Now every caller gets answered instantly, in their own language. Reviews mention it weekly.”</blockquote>
+          <figcaption>
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=160" alt="" loading="lazy" />
+            <div><strong>Daniel Reyes</strong><span class="mono">GM, Casa Mare</span></div>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“Client intake at 2 am, fully transcribed and in our CRM before we open. It's like hiring a night shift that never makes a mistake.”</blockquote>
+          <figcaption>
+            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=160" alt="" loading="lazy" />
+            <div><strong>Lena Vogel</strong><span class="mono">Partner, Velt &amp; Partners</span></div>
+          </figcaption>
+        </figure>
+        <div class="quotes__nav">
+          <button class="quotes__dot is-active" aria-label="Quote 1"></button>
+          <button class="quotes__dot" aria-label="Quote 2"></button>
+          <button class="quotes__dot" aria-label="Quote 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ 9 · PRICING ░░ -->
+    <section class="pricing section" id="pricing">
+      <div class="section__head">
+        <p class="eyebrow mono" data-reveal>( 06 ) — Pricing</p>
+        <h2 class="h2" data-reveal>Cheaper than a missed call<em>.</em></h2>
+      </div>
+      <div class="pricing__grid">
+        <article class="plan" data-reveal data-cursor>
+          <h3 class="mono">Starter</h3>
+          <p class="plan__price"><strong>$49</strong>/mo</p>
+          <p class="plan__desc">For solo practices getting their evenings back.</p>
+          <ul>
+            <li>200 minutes / month</li>
+            <li>1 phone number</li>
+            <li>Bookings &amp; FAQs</li>
+            <li>Email summaries</li>
+          </ul>
+          <a class="btn btn--outline" href="#cta" data-cursor>Start free</a>
+        </article>
+        <article class="plan plan--featured" data-reveal data-cursor>
+          <span class="plan__badge mono">Most popular</span>
+          <h3 class="mono">Growth</h3>
+          <p class="plan__price"><strong>$149</strong>/mo</p>
+          <p class="plan__desc">For teams that can't afford a single missed lead.</p>
+          <ul>
+            <li>1,000 minutes / month</li>
+            <li>3 numbers · smart routing</li>
+            <li>Calendar &amp; CRM sync</li>
+            <li>30+ languages</li>
+            <li>Analytics dashboard</li>
+          </ul>
+          <a class="btn btn--solid" href="#cta" data-cursor>Book a demo</a>
+        </article>
+        <article class="plan" data-reveal data-cursor>
+          <h3 class="mono">Scale</h3>
+          <p class="plan__price"><strong>Custom</strong></p>
+          <p class="plan__desc">Multi-location, high volume, white glove.</p>
+          <ul>
+            <li>Unlimited minutes</li>
+            <li>Custom voices &amp; flows</li>
+            <li>SLA &amp; dedicated support</li>
+            <li>HIPAA-ready options</li>
+          </ul>
+          <a class="btn btn--outline" href="#cta" data-cursor>Talk to sales</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ 10 · FAQ ░░ -->
+    <section class="faq section" id="faq">
+      <div class="section__head">
+        <p class="eyebrow mono" data-reveal>( 07 ) — FAQ</p>
+        <h2 class="h2" data-reveal>Asked, <em>answered.</em></h2>
+      </div>
+      <div class="faq__list">
+        <details class="faq__item" data-reveal>
+          <summary data-cursor>Will callers know it's an AI?<span class="faq__icon"></span></summary>
+          <p>Kawlya introduces itself honestly when asked, but its voice, pacing and conversational memory feel completely natural. Most callers simply notice they got helped fast.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary data-cursor>Do I have to change my phone number?<span class="faq__icon"></span></summary>
+          <p>No. You keep your number and simply forward calls — always, after a few rings, or only outside business hours. You can switch it off anytime.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary data-cursor>What happens with complicated calls?<span class="faq__icon"></span></summary>
+          <p>Kawlya recognizes when a human is needed and warm-transfers the call with full context — or takes a detailed message and flags it as urgent.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary data-cursor>How long does setup take?<span class="faq__icon"></span></summary>
+          <p>Most businesses are live within an afternoon. Connect a number, import your business info, make a test call — done.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary data-cursor>Is my data secure?<span class="faq__icon"></span></summary>
+          <p>Calls are encrypted in transit and at rest, processed in certified data centers, and never used to train shared models. HIPAA-ready plans are available.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ░░ 11 · FINAL CTA ░░ -->
+    <section class="cta section" id="cta">
+      <p class="eyebrow mono" data-reveal>( 08 ) — Get started</p>
+      <h2 class="cta__title" data-reveal>Give your phone line<br /><em>a voice.</em></h2>
+      <p class="section__lede" data-reveal>Fifteen minutes, your number, a live test call. That's all a demo takes.</p>
+      <div class="cta__row" data-reveal>
+        <a class="btn btn--solid btn--lg" href="#" data-cursor>Book a demo</a>
+        <a class="btn btn--outline btn--lg" href="#" data-cursor>Call Kawlya now — +1 (555) 014-0123</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <svg class="footer__k" viewBox="0 0 357.513 465.269" aria-hidden="true"><use href="#kpath"/></svg>
+        <p>The AI receptionist for<br />businesses that live on the phone.</p>
+      </div>
+      <nav class="footer__col"><h4 class="mono">Product</h4><a href="#demo">Live demo</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+      <nav class="footer__col"><h4 class="mono">Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Contact</a></nav>
+      <nav class="footer__col"><h4 class="mono">Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a></nav>
+    </div>
+    <div class="footer__word" aria-hidden="true">kawlya</div>
+    <div class="footer__bottom mono">
+      <span>© 2026 Kawlya Inc.</span>
+      <span>Photos: Pexels · Icons: Lucide</span>
+    </div>
+  </footer>
+
+  <!-- shared K path -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="kpath" d="M5.428.289C16.507-.244,30.851.12,42.141.134l60.305.073.003.763c.002.742.041,3.913-.295,4.115-2.287,1.374-7.777,1.446-10.459,2.167-8.54,2.295-14.386,7.812-14.963,16.88-1.169,18.344-.506,36.918-.438,55.305l-.048,59.476c-.014,9.421-.184,18.442-.01,27.898,3.246-2.34,7.165-6.284,10.334-8.975,10.255-8.704,19.672-18.316,29.516-27.388,14.125-13.018,28.25-25.966,41.987-39.408,4.179-4.323,8.574-7.22,11.835-12.294,8.109-12.616-14.472-8.969-9.495-15.547,2.093-.321,7.844-.164,10.18-.159l16.862-.058,36.912.055c2.795.024,10.001-.647,11.948.59,2.716,4.064-3.479,4.301-5.903,4.617-16.113,2.097-26.898,15.233-38.277,25.886l-30.717,28.627c-3.781,3.514-7.649,6.808-11.322,10.46-5.622,5.591-12.354,10.715-17.659,16.575l-.256.286c2.14,3.927,10.28,13.73,13.365,17.622l21.945,27.988,59.586,76.373c8.74,11.269,17.38,21.964,26.044,33.467.773-.897,1.494-1.839,2.158-2.819,7.722-11.449,15.437-23.753,22.993-35.433,6.758-10.447,15.597-22.196,20.368-33.597.926-2.212.822-7.309.334-9.578-1.335-6.716-7.429-9.245-13.491-10.367-2.324-.43-5.859-1.109-6.249-3.826.131-.352.346-1.132.615-1.249,3.143-1.369,12.767-.787,15.592-.77,7.455.085,14.91.099,22.365.041l24.774-.028c4.306-.004,10.838-.188,14.933.163-.003.906.041,3.71-.448,4.164-1.27,1.179-6.995,1.914-8.666,2.238-6.087,1.181-10.197,4.561-14.699,8.52-1.468,1.29-2.696,3.119-3.937,4.629-5.971,7.819-11.199,16.269-16.969,24.233-5.358,7.396-10.686,14.702-15.578,22.422-1.182,1.866-2.63,3.444-3.8,5.341-8.233,13.233-18.282,26.38-26.852,39.48-2.817,4.305-6.598,8.961-8.966,13.517-.314.604-.425,3.317-.426,4.123-.019,21.216.023,42.461.015,63.674l-.014,24.227c-.002,11.902-1.172,28.842,12.956,33.756,2.311.804,5.7.961,7.61,2.567,1.54,2.752-.015,4.166-2.879,4.161-13.542-.02-27.089-.082-40.634-.071l-26.802.103c-3.652.02-15.121.476-18.03-.537-.41-.577-.537-1.279-.544-1.996-.014-4.692,6.043-2.881,8.952-4.125,13.251-5.667,11.412-24.365,11.435-36.035l-.022-29.561c.111-15.569.137-31.139.077-46.708-.011-3.583.569-21.886-.997-23.915-4.005-5.189-9.398-11.839-13.551-17.134l-29.963-37.504c-4.219-5.199-8.6-10.315-12.762-15.55l-43.158-53.64-9.379-11.617c-2.716-3.411-5.425-7.107-8.642-10.021-.693.749-1.602,1.505-2.395,2.153-4.205,3.434-8.032,7.1-11.906,10.894-.096.634-.182,1.293-.207,1.934-.419,10.724-.176,21.258-.129,31.937l-.053,31.931c.026,6.808-.055,14.009-.109,20.795-.164,20.762.676,35.962,25.583,36.91.075,2.13.05,3.305-.14,5.426-5.159.515-14.383.242-19.85.226l-35.272-.09-26.897.058c-5.675.019-11.911.36-17.511-.581-1.261-.211-1.584-2.548-1.138-3.514.574-1.243,3.091-1.45,4.298-1.699,14.268-1.698,20.099-10.888,20.604-24.531.339-9.144.25-18.022.196-27.118l-.041-29.901-.057-88.945-.071-77.33c-.01-12.213.361-24.48-.068-36.703-.11-3.131-.789-7.796-2.036-10.712-3.031-7.086-7.563-10.237-15.134-11.343-2.582-.401-4.997-.407-7.461-1.373C-.443,4.647-.075,2.151.519,1.147,1.022.299,4.228.418,5.428.289Z"/>
+    </defs>
+  </svg>
+
+  <!-- libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
