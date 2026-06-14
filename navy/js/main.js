@@ -533,6 +533,57 @@ if (window.matchMedia("(hover: hover)").matches && !prefersReduced) {
 }
 
 /* ─────────────────────────────────
-   12 · ICONS
+   12 · FLOW — spine draws + steps light up on scroll
+───────────────────────────────── */
+const flowFill = document.getElementById("flowFill");
+const flowSteps = gsap.utils.toArray(".flowstep");
+if (flowFill && flowSteps.length) {
+  // the gold spine grows from top to bottom as the section scrolls through
+  gsap.to(flowFill, {
+    scaleY: 1, ease: "none",
+    scrollTrigger: {
+      trigger: "#flowTrack",
+      start: "top 72%",
+      end: "bottom 75%",
+      scrub: 0.6,
+    },
+  });
+  // each step lights its dot + card as it reaches the middle of the viewport
+  flowSteps.forEach((step) => {
+    ScrollTrigger.create({
+      trigger: step,
+      start: "top 72%",
+      onEnter: () => step.classList.add("is-on"),
+      onLeaveBack: () => step.classList.remove("is-on"),
+    });
+  });
+}
+
+/* ─────────────────────────────────
+   13 · VIDEO REEL — autoplay safety + sound toggle
+───────────────────────────────── */
+const reelVideo = document.getElementById("reelVideo");
+const reelSound = document.getElementById("reelSound");
+if (reelVideo) {
+  // some browsers need an explicit play() after metadata; muted keeps autoplay allowed
+  const tryPlay = () => reelVideo.play().catch(() => {});
+  reelVideo.addEventListener("canplay", tryPlay, { once: true });
+  tryPlay();
+  // pause when off-screen to save battery/CPU
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) tryPlay(); else reelVideo.pause();
+  }, { threshold: 0.15 }).observe(reelVideo);
+
+  const ICON_MUTED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  const ICON_SOUND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+  reelSound.addEventListener("click", () => {
+    reelVideo.muted = !reelVideo.muted;
+    reelSound.innerHTML = reelVideo.muted ? ICON_MUTED : ICON_SOUND;
+    if (!reelVideo.muted) tryPlay();
+  });
+}
+
+/* ─────────────────────────────────
+   14 · ICONS
 ───────────────────────────────── */
 lucide.createIcons();
