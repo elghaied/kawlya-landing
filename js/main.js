@@ -409,7 +409,7 @@ const speakerLabel = document.getElementById("demoSpeaker");
 const timerEl = document.getElementById("demoTimer");
 const eqBars = gsap.utils.toArray("#demoEq i");
 
-const speakers = ["Caller is speaking…", "Kawlya is speaking…", "Caller is speaking…", "Kawlya is speaking…", "Call wrapped up ✓"];
+const speakers = ["Le client parle…", "Kawlya parle…", "Le client parle…", "Kawlya parle…", "Appel terminé ✓"];
 
 const demoTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 2.2 });
 bubbles.forEach((b, i) => {

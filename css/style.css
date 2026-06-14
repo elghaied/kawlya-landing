@@ -15,8 +15,8 @@
   --accent-2: #C9AC8C;     /* light gold highlight */
   --accent-ink: #181109;   /* texte sur boutons or */
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Archivo", sans-serif;
+  --font-display: "Clash Display", "Switzer", sans-serif;
+  --font-body: "Switzer", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 
   --pad: clamp(1.25rem, 4vw, 4rem);
@@ -183,7 +183,7 @@ em { font-style: italic; }
   transition: transform 0.55s cubic-bezier(0.22,1,0.36,1), opacity 0.55s, color 0.3s;
 }
 .menu.is-open .menu__links a { transform: translateY(0); opacity: 1; }
-.menu__links a:hover { color: var(--accent); font-style: italic; }
+.menu__links a:hover { color: var(--accent); }
 .menu__cta { align-self: flex-start; }
 
 /* ─── shared section bits ─── */
@@ -201,7 +201,7 @@ em { font-style: italic; }
   font-size: clamp(2.3rem, 5.5vw, 4.4rem);
   font-weight: 400; line-height: 1.06; letter-spacing: -0.02em;
 }
-.h2 em, .cta__title em, .hero__title em { color: var(--accent); font-weight: 300; }
+.h2 em, .cta__title em, .hero__title em { color: var(--accent); font-weight: 500; font-style: normal; }
 .section__lede {
   margin-top: 1.5rem; max-width: 34rem;
   color: var(--cream-dim); font-size: clamp(1rem, 1.4vw, 1.15rem);
@@ -450,11 +450,11 @@ em { font-style: italic; }
 .stats__grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 2rem; }
 .stats__grid li { display: flex; flex-direction: column; gap: 0.6rem; }
 .stats__grid strong {
-  font-family: var(--font-display); font-weight: 300;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(3rem, 6.5vw, 5.5rem); line-height: 1;
   color: var(--cream);
 }
-.stats__grid strong .count { color: var(--accent); font-style: italic; }
+.stats__grid strong .count { color: var(--accent); }
 .stats__grid span:not(.count) { color: var(--cream-dim); font-size: 0.92rem; max-width: 15rem; }
 
 /* ─── quotes ─── */
@@ -472,7 +472,7 @@ em { font-style: italic; }
 .quote blockquote {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 3vw, 2.3rem);
-  font-weight: 300; line-height: 1.35; letter-spacing: -0.01em;
+  font-weight: 400; line-height: 1.35; letter-spacing: -0.01em;
 }
 .quote figcaption { display: flex; align-items: center; gap: 0.9rem; text-align: left; }
 .quote figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
@@ -754,6 +754,8 @@ em { font-style: italic; }
 }
 
 @media (max-width: 640px) {
+  /* le menu burger contient déjà le CTA : on retire celui de la barre pour aérer */
+  .nav__actions .btn--solid { display: none; }
   .footer__top { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: 1 / -1; }
   .bento { grid-template-columns: 1fr; }
