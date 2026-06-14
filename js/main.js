@@ -156,11 +156,11 @@ function initOrb() {
           float d = length(gl_PointCoord - 0.5);
           if (d > 0.5) discard;
           float soft = smoothstep(0.5, 0.05, d);
-          vec3 ice    = vec3(0.85, 0.92, 1.0);
-          vec3 cyan   = vec3(0.38, 0.85, 1.0);
-          vec3 indigo = vec3(0.42, 0.47, 1.0);
-          vec3 base = mix(ice, indigo, step(0.6, fract(vSeed * 7.31))); // a fraction of particles run indigo
-          vec3 col = mix(base, cyan, vGlow);
+          vec3 offwhite = vec3(0.949, 0.949, 0.953); // #F2F2F3
+          vec3 lightgold = vec3(0.788, 0.675, 0.549); // #C9AC8C — lueur sur la voix
+          vec3 bronze    = vec3(0.694, 0.580, 0.463); // #B19476
+          vec3 base = mix(offwhite, bronze, step(0.6, fract(vSeed * 7.31))); // une partie des particules en bronze
+          vec3 col = mix(base, lightgold, vGlow);
           gl_FragColor = vec4(col, soft * (0.32 + vGlow * 0.68));
         }
       `,
@@ -189,9 +189,9 @@ function initOrb() {
       fragmentShader: /* glsl */ `
         varying float vFres; varying float vN;
         void main() {
-          vec3 deep = vec3(0.05, 0.16, 0.38);
-          vec3 cyan = vec3(0.38, 0.85, 1.0);
-          vec3 col = mix(deep, cyan, vFres + vN * 0.15);
+          vec3 deep = vec3(0.10, 0.07, 0.04);          // cœur brun chaud
+          vec3 lightgold = vec3(0.788, 0.675, 0.549);  // liseré fresnel or clair
+          vec3 col = mix(deep, lightgold, vFres + vN * 0.15);
           gl_FragColor = vec4(col, 0.06 + vFres * 0.7);
         }
       `,
@@ -234,7 +234,7 @@ function initOrb() {
           float d = length(gl_PointCoord - 0.5);
           if (d > 0.5) discard;
           float soft = smoothstep(0.5, 0.0, d);
-          gl_FragColor = vec4(vec3(0.6, 0.78, 1.0), soft * 0.35 * vTw);
+          gl_FragColor = vec4(vec3(0.74, 0.62, 0.48), soft * 0.35 * vTw); // poussière dorée
         }
       `,
     });
